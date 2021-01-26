@@ -62,9 +62,80 @@ const pies = [
   },
 ];
 // *** DOM Selectors ***
-
+const printToDom = (divId, textToPrint) => {
+  const selectedDiv = document.querySelector(divId);
+  selectedDiv.innerHTML = textToPrint;
+};
 
 // *** Event Handlers ***
 
+const pieBuilder = (taco) => {
+  let domString = ' ';
+
+  for (let i = 0; i < taco.length; i++) {
+    domString += `<div class="card my-2" style="width: 18rem;" id=${i}>
+    <div class="img-container" style="background-image: url('${taco[i].imageUrl}');"></div>
+    <div class="card-body">
+      <p class="card-text">${taco[i].name}</p>
+      <p class="card-text">${taco[i].ingredients}</p>
+      <p class="card-text">${taco[i].bakeTemp}</p>
+      <p class="card-text">${taco[i].drinkPairing}</p>
+      <p class="card-text">${taco[i].iceCream}</p>
+      <button type="button" class="btn btn-danger" id="${i}">Delete</button>
+    </div>
+  </div>`;
+  }
+  printToDom('#pies', domString)
+};
+
+const handleButtonClick = (e) => {
+    const buttonId = e.target.id;
+
+    if (buttonId === 'Trinity') {
+      // DARK MODE 
+      document.querySelector('body').style.backgroundColor = '#000'
+    } else if (buttonId === 'Doc') {
+      // LIGHT MODE
+      document.querySelector('body').style.backgroundColor = '#FFF'
+    } else if (buttonId === 'Aja') {
+      // MEDIUM MODE 
+      document.querySelector('body').style.backgroundColor = '#808080'
+    } else if (buttonId === 'All') {
+      // Default
+      document.querySelector('body').style.backgroundColor = 'rgb(175, 196, 175)';
+    }
+
+    const selectedPies = [];
+
+    for (let i = 0; i < pies.length; i++) {
+      if (pies[i].instructor === buttonId) {
+        selectedPies.push(pies[i]);
+      }
+    }
+
+    if (buttonId === 'All') {
+      pieBuilder(pies);
+    } else {
+      pieBuilder(selectedPies);
+    }
+
+};
+
+// Update pies based on button click 
+
+const buttonEvents = () => {
+  document.querySelector('#All').addEventListener('click', handleButtonClick)
+  document.querySelector('#Doc').addEventListener('click', handleButtonClick)
+  document.querySelector('#Aja').addEventListener('click', handleButtonClick)
+  document.querySelector('#Trinity').addEventListener('click', handleButtonClick)
+}
+
+
+const init = () => {
+  buttonEvents();
+  pieBuilder(pies);
+}
 
 // *** Event Listeners ***
+
+init();
