@@ -86,19 +86,33 @@ const pieBuilder = (taco) => {
   // </div>`;
   // }
 
-  taco.forEach((item, i) => {
-    domString += `<div class="card my-2" style="width: 18rem;" id=${i}>
-    //   <div class="img-container" style="background-image: url('${taco[i].imageUrl}');"></div>
-    //   <div class="card-body">
-    //     <p class="card-text">${item.name}</p>
-    //     <p class="card-text">${item.ingredients}</p>
-    //     <p class="card-text">${item.bakeTemp}</p>
-    //     <p class="card-text">${item.drinkPairing}</p>
-    //     <p class="card-text">${item.iceCream}</p>
-    //     <button type="button" class="btn btn-danger" id="${i}">Delete</button>
-    //   </div>
-    // </div>`;
-  })
+  // taco.forEach((item, i) => {
+  //   domString += `<div class="card my-2" style="width: 18rem;" id=${i}>
+  //   //   <div class="img-container" style="background-image: url('${taco[i].imageUrl}');"></div>
+  //   //   <div class="card-body">
+  //   //     <p class="card-text">${item.name}</p>
+  //   //     <p class="card-text">${item.ingredients}</p>
+  //   //     <p class="card-text">${item.bakeTemp}</p>
+  //   //     <p class="card-text">${item.drinkPairing}</p>
+  //   //     <p class="card-text">${item.iceCream}</p>
+  //   //     <button type="button" class="btn btn-danger" id="${i}">Delete</button>
+  //   //   </div>
+  //   // </div>`;
+  // })
+
+  for (const element of taco) {
+    domString += `<div class="card my-2" style="width: 18rem;" id=${pies.indexOf(element)}>
+  <div class="img-container" style="background-image: url('${element.imageUrl}');"></div>
+  <div class="card-body">
+  <p class="card-text">${element.name}</p>
+  <p class="card-text">${element.ingredients}</p>
+  <p class="card-text">${element.bakeTemp}</p>
+  <p class="card-text">${element.drinkPairing}</p>
+  <p class="card-text">${element.iceCream}</p>
+  <button type="button" class="btn btn-danger" id="${pies.indexOf(element)}">Delete</button>
+  </div>
+  </div>`;
+  }
   printToDom('#pies', domString)
 };
 
