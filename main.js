@@ -121,6 +121,35 @@ const handleButtonClick = (e) => {
 
 };
 
+const getFormInfo = (e) => {
+  e.preventDefault();
+  // Target form values
+  const name = document.querySelector('#name').value;
+  const ingredients = document.querySelector('#ingredients').value;
+  const bakeTemp = document.querySelector('#bakeTemp').value;
+  const drinkPairing = document.querySelector('#drinkPairing').value;
+  const imageUrl = document.querySelector('#imageUrl').value;
+  const instructor = document.querySelector('#instructor').value;
+  const iceCream = document.querySelector('#iceCream').value;
+
+  // Store target values in obj
+  const obj = {
+    name,
+    bakeTemp,
+    ingredients,
+    drinkPairing,
+    imageUrl,
+    instructor,
+    iceCream
+  }
+  // Update the data
+  pies.push(obj);
+  // Update the DOM 
+  pieBuilder(pies);
+  
+  // Resets the Form 
+  document.querySelector('form').reset();
+}
 // Update pies based on button click 
 
 const buttonEvents = () => {
@@ -128,8 +157,8 @@ const buttonEvents = () => {
   document.querySelector('#Doc').addEventListener('click', handleButtonClick)
   document.querySelector('#Aja').addEventListener('click', handleButtonClick)
   document.querySelector('#Trinity').addEventListener('click', handleButtonClick)
+  document.querySelector('form').addEventListener('submit', getFormInfo)
 }
-
 
 const init = () => {
   buttonEvents();
