@@ -150,6 +150,16 @@ const getFormInfo = (e) => {
   // Resets the Form 
   document.querySelector('form').reset();
 }
+
+const deletePie = (e) => {
+  const targetType = e.target.type;
+  const targetId = e.target.id;
+  
+  if (targetType === 'button') {
+    pies.splice(targetId, 1);
+   }
+   pieBuilder(pies)
+}
 // Update pies based on button click 
 
 const buttonEvents = () => {
@@ -158,6 +168,7 @@ const buttonEvents = () => {
   document.querySelector('#Aja').addEventListener('click', handleButtonClick)
   document.querySelector('#Trinity').addEventListener('click', handleButtonClick)
   document.querySelector('form').addEventListener('submit', getFormInfo)
+  document.querySelector('#pies').addEventListener('click', deletePie)
 }
 
 const init = () => {
